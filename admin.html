@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>관리자 · 포트폴리오</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+
+    <!-- 위쪽 머리말 -->
+    <header class="sheet admin-header">
+      <h1 class="big-title">ADMIN</h1>
+      <div class="admin-header-side">
+        <a class="text-link" href="index.html">방문자 화면 보기</a>
+        <span class="admin-email" id="user-email" hidden></span>
+        <button type="button" class="small-button" id="logout-button" hidden>로그아웃</button>
+      </div>
+    </header>
+
+    <!-- 1. 로그인 -->
+    <section class="sheet admin-section" id="login-view" hidden>
+      <h2 class="section-title">관리자 로그인</h2>
+      <div class="login-form">
+        <label class="field">
+          <span>이메일</span>
+          <input type="email" id="login-email" autocomplete="username">
+        </label>
+        <label class="field">
+          <span>비밀번호</span>
+          <input type="password" id="login-password" autocomplete="current-password">
+        </label>
+        <button type="button" class="primary-button" id="login-button">로그인</button>
+      </div>
+      <p class="status" id="login-status"></p>
+    </section>
+
+    <!-- 2. 관리자가 아닐 때 -->
+    <section class="sheet admin-section" id="denied-view" hidden>
+      <h2 class="section-title">관리자만 쓸 수 있어요</h2>
+      <p class="notice">이 계정은 관리자로 등록되어 있지 않아요. 오른쪽 위 로그아웃을 누른 뒤 관리자 계정으로 다시 로그인해 주세요.</p>
+    </section>
+
+    <!-- 3. 관리자 화면 -->
+    <div id="admin-view" class="admin-view" hidden>
+
+      <!-- 프로필 -->
+      <section class="sheet admin-section">
+        <h2 class="section-title">프로필</h2>
+
+        <div class="photo-row">
+          <div class="photo" id="pf-photo-preview"></div>
+          <div class="photo-actions">
+            <label class="field">
+              <span>프로필 사진 (이미지, 10MB까지)</span>
+              <input type="file" id="pf-photo" accept="image/png,image/jpeg,image/webp,image/gif">
+            </label>
+            <button type="button" class="small-button danger" id="pf-photo-remove">사진 지우기</button>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <label class="field"><span>이름</span><input type="text" id="pf-name"></label>
+          <label class="field"><span>직함</span><input type="text" id="pf-title"></label>
+          <label class="field"><span>경력 배지</span><input type="text" id="pf-career_badge"></label>
+          <label class="field"><span>이메일</span><input type="text" id="pf-email"></label>
+          <label class="field"><span>연락처</span><input type="text" id="pf-phone"></label>
+          <label class="field"><span>위치</span><input type="text" id="pf-location"></label>
+          <label class="field wide"><span>한 줄 소개 제목 (이름이 들어가면 파란 밑줄)</span><input type="text" id="pf-headline"></label>
+          <label class="field wide"><span>소개 글</span><textarea id="pf-intro" rows="4"></textarea></label>
+          <label class="field"><span>EDUCATION</span><textarea id="pf-education" rows="3"></textarea></label>
+          <label class="field"><span>SKILLS &amp; TOOLS</span><textarea id="pf-skills" rows="3"></textarea></label>
+          <label class="field"><span>EXPERIENCE</span><textarea id="pf-experience" rows="3"></textarea></label>
+          <label class="field wide"><span>맨 아래 인용</span><textarea id="pf-quote" rows="2"></textarea></label>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" class="primary-button" id="pf-save">프로필 저장</button>
+        </div>
+        <p class="status" id="profile-status"></p>
+      </section>
+
+      <!-- 포트폴리오 카드 -->
+      <section class="sheet admin-section">
+        <h2 class="section-title">포트폴리오 카드</h2>
+
+        <div class="project-form">
+          <p class="form-heading" id="pj-heading">새 카드 추가</p>
+          <div class="form-grid">
+            <label class="field"><span>번호 (예: 01)</span><input type="text" id="pj-number"></label>
+            <label class="field"><span>분류</span><input type="text" id="pj-category"></label>
+            <label class="field wide"><span>제목 (꼭 적기)</span><input type="text" id="pj-title"></label>
+            <label class="field wide"><span>설명</span><textarea id="pj-description" rows="3"></textarea></label>
+            <label class="field"><span>태그 (쉼표로 나누기)</span><input type="text" id="pj-tags"></label>
+            <label class="field"><span>순서 (작은 숫자가 앞)</span><input type="number" id="pj-sort"></label>
+
+            <div class="field">
+              <span>썸네일 이미지 (이미지, 10MB까지)</span>
+              <input type="file" id="pj-thumb" accept="image/png,image/jpeg,image/webp,image/gif">
+              <p class="current-file" id="pj-thumb-current"></p>
+              <button type="button" class="small-button" id="pj-thumb-remove" hidden>썸네일 빼기</button>
+            </div>
+            <div class="field">
+              <span>첨부 파일 (이미지·PDF, 10MB까지)</span>
+              <input type="file" id="pj-file" accept="image/png,image/jpeg,image/webp,image/gif,application/pdf">
+              <p class="current-file" id="pj-file-current"></p>
+              <button type="button" class="small-button" id="pj-file-remove" hidden>첨부 파일 빼기</button>
+            </div>
+          </div>
+
+          <div class="form-buttons">
+            <button type="button" class="primary-button" id="pj-save">카드 추가</button>
+            <button type="button" class="small-button" id="pj-cancel" hidden>수정 그만두기</button>
+          </div>
+          <p class="status" id="project-status"></p>
+        </div>
+
+        <ul class="admin-list" id="project-list">
+          <li class="notice">불러오는 중…</li>
+        </ul>
+      </section>
+
+      <!-- 좋아요 -->
+      <section class="sheet admin-section">
+        <h2 class="section-title">좋아요</h2>
+        <ul class="admin-list" id="like-list">
+          <li class="notice">불러오는 중…</li>
+        </ul>
+        <p class="status" id="like-status"></p>
+      </section>
+
+      <!-- 방명록 -->
+      <section class="sheet admin-section">
+        <h2 class="section-title">방명록</h2>
+        <ul class="admin-list" id="admin-guest-list">
+          <li class="notice">불러오는 중…</li>
+        </ul>
+        <p class="status" id="guest-admin-status"></p>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
