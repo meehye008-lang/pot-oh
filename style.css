@@ -1,4 +1,13 @@
 /* ===== 기본 색과 글꼴 ===== */
+
+/* 한 줄 소개 제목에 쓰는 부드러운 글꼴 (고운돋움, 저장소 안 fonts 폴더의 파일, 사용 허락: fonts/OFL.txt) */
+@font-face {
+  font-family: "Gowun Dodum";
+  src: url("fonts/GowunDodum.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --bg: #eef0f4;          /* 바깥 연회색 바탕 */
   --paper: #ffffff;       /* 흰 카드 */
@@ -153,9 +162,13 @@ button, input { font: inherit; }
 
 .headline {
   margin-top: 28px;
-  font-size: 22px;
-  font-weight: 800;
-  line-height: 1.5;
+  font-family: "Gowun Dodum", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  word-break: keep-all;   /* 낱말 중간에서 줄이 바뀌지 않게 */
+  text-wrap: balance;     /* 두 줄이 되면 길이를 비슷하게 */
 }
 
 .headline mark {
@@ -163,7 +176,7 @@ button, input { font: inherit; }
   color: inherit;
   text-decoration: underline;
   text-decoration-color: var(--blue);
-  text-decoration-thickness: 4px;
+  text-decoration-thickness: 3px;
   text-underline-offset: 6px;
 }
 
@@ -728,7 +741,7 @@ button, input { font: inherit; }
 
   .content, .guestbook { padding: 32px 20px; }
   .big-title { font-size: 30px; }
-  .headline { font-size: 19px; }
+  .headline { font-size: 21px; }
 
   .facts { grid-template-columns: 1fr; }
   .highlights { padding: 16px; }
